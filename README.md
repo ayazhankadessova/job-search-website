@@ -21,4 +21,11 @@ npm install && npm start
 
    - Add unique indexing for email
 
-7. get the front & connect with front
+7. Register Route
+
+   1. Validate - name, email, password - with mongoose
+   2. Hash password (with bcryptjs)
+   3. Create Token
+   4. Send response with token if valid
+
+8. get the front & connect with front
