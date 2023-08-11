@@ -24,7 +24,7 @@ npm install && npm start
 7. Register Route
 
    1. Validate - name, email, password - with mongoose - done
-   2. Hash password (with bcryptjs)
+   2. Hash password (with bcryptjs) - done
    3. Create Token
    4. Send response with token if valid
 
@@ -101,3 +101,14 @@ const register = async (req, res) => {
 
 }
 ```
+
+- Even if someone breaks into the database, they will not get the password, but only hashed password, which prevents them from easily reusing later
+- Never store passwords as strings
+- more bytes:
+
+```
+  // random bytes
+  const salt = await bcrypt.genSalt(10)
+```
+
+- more processing power.

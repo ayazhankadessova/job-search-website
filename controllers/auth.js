@@ -14,21 +14,9 @@ const register = async (req, res) => {
   // //   }
   // // .. -> pass as single arguments -> good for validation
 
-  const { name, email, password } = req.body
-  console.log(name, email, password)
-
-  const salt = await bcrypt.genSalt(10)
-  const hashedPassword = await bcrypt.hash(password, salt)
-
-  const tempUser = { name, email, password: hashedPassword }
-
-  console.log(tempUser)
-
-  const newUser = await User.create({ ...tempUser })
-  // // console.log(User)
+  // middleware takes care of hashing the password
+  const newUser = await User.create({ ...req.body })
   res.status(StatusCodes.CREATED).json(newUser)
-
-  // res.send('login user')
 }
 
 const login = async (req, res) => {
