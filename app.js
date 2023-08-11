@@ -5,6 +5,8 @@ const app = express()
 
 // connect db
 const connectDB = require('./db/connect')
+const authenticateUser = require('./middleware/authentication')
+
 require('dotenv').config()
 
 //routers
