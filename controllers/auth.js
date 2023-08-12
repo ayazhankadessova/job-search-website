@@ -24,6 +24,12 @@ const register = async (req, res) => {
   res.status(StatusCodes.CREATED).json({ user: { name: newUser.name }, token })
 }
 
+/*
+
+1. Check for email & password -> if not there, Bad Request
+2. Find user based on email
+3. Return user
+*/
 const login = async (req, res) => {
   res.send('login user')
 }
