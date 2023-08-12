@@ -28,10 +28,36 @@ const register = async (req, res) => {
 
 1. Check for email & password -> if not there, Bad Request
 2. Find user based on email
-3. Return user
+3. Compare password
+4. If password is correct -> generate token
+5. If password is incorrect -> error
 */
 const login = async (req, res) => {
-  res.send('login user')
+  const { email, password } = req.body
+
+  if (!email || !password) {
+    throw new BadRequestError('Please enter a valid email address & a password')
+  }
+
+  const loginUser = await User.findOne({ email })
+
+  if (!loginUser) {
+    throw new UnauthenticatedError('No user found.')
+  }
+
+  // compare password
+  const isPasswordMatch = await loginUser.comparePassword(password)
+
+  if (!isPasswordMatch) {
+    throw new UnauthenticatedError('Incorrect Password.')
+  }
+
+  // create a token
+  const token = loginUser.createToken()
+
+  res
+    .status(StatusCodes.CREATED)
+    .json({ user: { name: loginUser.name }, token })
 }
 
 module.exports = { register, login }

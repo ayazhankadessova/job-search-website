@@ -28,11 +28,21 @@ npm install && npm start
    3. Create Token in controller - done
    4. Create Token , move to Schema instance method - done
    5. Generate token for JWT_Secret & set lifetime as env var - done
-   6. Send response with token if valid
+   6. Send response with token if valid - done
 
-8. Think about expiresIn -> set in .env
+8. Login router
 
-9. get the front & connect with front
+   1. In controller: get email & password (do not need a name) - done
+   2. If no email or password -> throw BadRequestError - done
+   3. Find User through email bc it is key - done
+   4. Compare Passwords using bcrypt & instance method in User model - done
+   5. If user not found or password does not match the one in db -> throw UnauthenticatedError - done
+   6. If there is user & password matches, generate Token using instance method - done
+   7. Send Response with Token - done
+
+9. Think about expiresIn -> set in .env
+
+10. get the front & connect with front
 
 ---
 
