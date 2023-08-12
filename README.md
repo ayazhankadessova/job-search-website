@@ -25,8 +25,9 @@ npm install && npm start
 
    1. Validate - name, email, password - with mongoose - done
    2. Hash password (with bcryptjs) - done
-   3. Create Token
-   4. Send response with token if valid
+   3. Create Token in controller - done
+   4. Create Token , move to Schema instance method - done
+   5. Send response with token if valid
 
 8. Think about expiresIn -> set in .env
 
