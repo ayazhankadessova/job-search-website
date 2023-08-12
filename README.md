@@ -28,31 +28,7 @@ npm install && npm start
    3. Create Token
    4. Send response with token if valid
 
-8. Spread Operator (...)
-
-In the code snippet you provided, the spread operator (`...`) is used to pass the properties of the `req.body` object as individual arguments to the `create()` method.
-
-The `create()` method is likely a function or method that expects multiple arguments instead of a single object. By using the spread operator, the properties of `req.body` are spread out as separate arguments to the `create()` method.
-
-Here's an example to illustrate the usage of the spread operator:
-
-```javascript
-const userObject = {
-  name: 'John Doe',
-  age: 25,
-  email: 'johndoe@example.com',
-}
-
-// Without spread operator
-const user = User.create(userObject)
-
-// With spread operator
-const user = User.create(...userObject)
-```
-
-In the first case, `userObject` is passed as a single argument to the `create()` method. In the second case, the spread operator is used to spread out the properties of `userObject` as separate arguments to the `create()` method.
-
-It's important to note that the usage of the spread operator depends on how the `create()` method is defined and what arguments it expects. If the `create()` method expects a single object argument, then the spread operator may not be necessary. However, if it expects individual arguments, then the spread operator can be used to pass the properties of an object as separate arguments.
+8. Think about expiresIn -> set in .env
 
 9. get the front & connect with front
 
@@ -117,4 +93,59 @@ const register = async (req, res) => {
 
 1. What to send when we create a token?
 
-- Depends on the needs of the front-end. However, if you have created a token, definitely send back the token because it will help the user access resources on the server later on
+- Depends on the needs of the front-end. However, if you have created a token, definitely send back the token because it will help the user access resources on the server later on.
+
+2. Spread Operator (...)
+
+In the code snippet you provided, the spread operator (`...`) is used to pass the properties of the `req.body` object as individual arguments to the `create()` method.
+
+The `create()` method is likely a function or method that expects multiple arguments instead of a single object. By using the spread operator, the properties of `req.body` are spread out as separate arguments to the `create()` method.
+
+Here's an example to illustrate the usage of the spread operator:
+
+```javascript
+const userObject = {
+  name: 'John Doe',
+  age: 25,
+  email: 'johndoe@example.com',
+}
+
+// Without spread operator
+const user = User.create(userObject)
+
+// With spread operator
+const user = User.create(...userObject)
+```
+
+In the first case, `userObject` is passed as a single argument to the `create()` method. In the second case, the spread operator is used to spread out the properties of `userObject` as separate arguments to the `create()` method.
+
+It's important to note that the usage of the spread operator depends on how the `create()` method is defined and what arguments it expects. If the `create()` method expects a single object argument, then the spread operator may not be necessary. However, if it expects individual arguments, then the spread operator can be used to pass the properties of an object as separate arguments.
+
+3. Instance Methods for models
+
+- https://mongoosejs.com/docs/guide.html#methods
+
+Instances of Models are documents. Documents have many of their own built-in instance methods. We may also define our own custom document instance methods.
+
+```
+UserSchema.methods.createJWT = function () {
+  const token = jwt.sign(
+    { userId: this._id, name: this.name },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: '30d',
+    }
+  )
+}
+
+UserSchema.methods.comparePassword = async function (givenPassword) {
+  const isMatch = bcrypt.compare(givenPassword, this.password) // true
+  return isMatch
+}
+```
+
+- how to use the method?
+
+```
+  const token = newUser.createJWT()
+```
