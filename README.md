@@ -40,9 +40,15 @@ npm install && npm start
    6. If there is user & password matches, generate Token using instance method - done
    7. Send Response with Token - done
 
-9. Think about expiresIn -> set in .env
+9. Think about expiresIn -> set in .env - done
 
-10. get the front & connect with front
+10. Auth middleware:
+
+    1. Get user id
+    2. Pass it along to the jobs route
+    3. Test : register user -> get token -> put the token in the header, authorization -> will return userId, name
+
+11. get the front & connect with front
 
 ---
 
@@ -171,3 +177,34 @@ UserSchema.methods.comparePassword = async function (givenPassword) {
 - key generators: allkeysgenerator.com OR https://generate-random.org/encryption-key-generator
 
 > Store it in .env as JWT_SECRET
+
+5. AuthMiddleware -> I can only see my job, others can only see their jobs
+
+```
+const authMiddleware = async (req, res, next) => {
+  const authHeader = req.headers.authorization
+
+  if (!authHeader || !authHeader.startsWith('Bearer')) {
+    throw new UnauthenticatedError('No Token provided')
+  }
+
+  const token = authHeader.split(' ')[1]
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET)
+
+    // attach the user to the job routes
+    req.user = { userId: decoded.userId, name: decoded.name }
+
+    next()
+  } catch (err) {
+    throw new UnauthenticatedError('Authentication failed')
+  }
+}
+```
+
+- add to all jobs routes
+
+```
+app.use('/api/v1/jobs', authenticateUser, jobsRouter)
+```
