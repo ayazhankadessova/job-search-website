@@ -58,6 +58,8 @@ const login = async (req, res) => {
   res
     .status(StatusCodes.CREATED)
     .json({ user: { name: loginUser.name }, token })
+
+  // TODO: verify token
 }
 
 module.exports = { register, login }
