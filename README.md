@@ -27,7 +27,8 @@ npm install && npm start
    2. Hash password (with bcryptjs) - done
    3. Create Token in controller - done
    4. Create Token , move to Schema instance method - done
-   5. Send response with token if valid
+   5. Generate token for JWT_Secret & set lifetime as env var - done
+   6. Send response with token if valid
 
 8. Think about expiresIn -> set in .env
 
@@ -150,3 +151,13 @@ UserSchema.methods.comparePassword = async function (givenPassword) {
 ```
   const token = newUser.createJWT()
 ```
+
+4. About jsonwebtoken
+
+- Expires in :
+
+> check out the docs here: https://www.npmjs.com/package/jsonwebtoken
+
+- key generators: allkeysgenerator.com OR https://generate-random.org/encryption-key-generator
+
+> Store it in .env as JWT_SECRET
