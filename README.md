@@ -112,3 +112,9 @@ const register = async (req, res) => {
 ```
 
 - more processing power.
+
+## Knowledge Base
+
+1. What to send when we create a token?
+
+- Depends on the needs of the front-end. However, if you have created a token, definitely send back the token because it will help the user access resources on the server later on
