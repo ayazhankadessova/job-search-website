@@ -58,7 +58,24 @@ npm install && npm start
     1. We need to pass Authorization Header, company, position
     2. Get the userId -> tie it as createdBy -> so you cannot modify others work/others cannot modify your work.
 
-13.
+13. Pass the token dynamically
+
+    1. Set global variable in PostMan:
+
+    - Login user -> Tests
+
+    ```
+    const jsonData = pm.response.json()
+    pm.globals.set("accessToken", jsonData.token);
+    ```
+
+    - Now it is a global variable
+
+    2. Use it in create job
+
+    - Authorization -> Bearer -> {{accessToken}}
+
+    3. Use it in Get all jobs as well
 
 14. get the front & connect with front
 
@@ -269,3 +286,22 @@ const Book = mongoose.model('Book', {
     }
 }
 ```
+
+2. Set global valriables in PostMan
+
+   1. Set global variable in PostMan:
+
+   - Login user -> Tests
+
+   ```
+   const jsonData = pm.response.json()
+   pm.globals.set("accessToken", jsonData.token);
+   ```
+
+   - Now it is a global variable
+
+   2. Use it in create job
+
+   - Authorization -> Bearer -> {{accessToken}}
+
+   3. Use it in Get all jobs as well
