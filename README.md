@@ -55,12 +55,12 @@ npm install && npm start
 
 12. Create Job Route
 
-    1. We need to pass Authorization Header, company, position
-    2. Get the userId -> tie it as createdBy -> so you cannot modify others work/others cannot modify your work.
+    1. We need to pass Authorization Header, company, position - done
+    2. Get the userId -> tie it as createdBy -> so you cannot modify others work/others cannot modify your work. - done
 
 13. Pass the token dynamically
 
-    1. Set global variable in PostMan:
+    1. Set global variable in PostMan: - done
 
     - Login user -> Tests
 
@@ -71,13 +71,21 @@ npm install && npm start
 
     - Now it is a global variable
 
-    2. Use it in create job
+    2. Use it in create job - done
 
     - Authorization -> Bearer -> {{accessToken}}
 
-    3. Use it in Get all jobs as well
+    3. Use it in Get all jobs as well - done
 
-14. get the front & connect with front
+    4. [Test] -> Register User -> Login User -> Create a Job -> Get all Jobs
+
+14. Create a Job / Get a Job / Update a Job / Delete a Job controllers
+
+    1. https://mongoosejs.com/docs/tutorials/findoneandupdate.html
+
+    - All Done
+
+15. get the front & connect with front
 
 ---
 
