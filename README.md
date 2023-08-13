@@ -85,7 +85,15 @@ npm install && npm start
 
     - All Done
 
-15. get the front & connect with front
+15. Test all Job controllers - done
+
+16. Work on Mongoose Errors [ will reuse in later projects]
+
+- Validation Errors
+- Duplicate (Email)
+- Cast Error
+
+16. get the front & connect with front
 
 ---
 
