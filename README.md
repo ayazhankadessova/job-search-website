@@ -44,11 +44,16 @@ npm install && npm start
 
 10. Auth middleware:
 
-    1. Get user id
-    2. Pass it along to the jobs route
-    3. Test : register user -> get token -> put the token in the header, authorization -> will return userId, name
+    1. Get user id - done
+    2. Pass it along to the jobs route - done
+    3. Test : register user -> get token -> put the token in the header, authorization -> will return userId, name - done
 
-11. get the front & connect with front
+11. Jobs Model:
+
+    1. Make a schema for a jobs - done
+    2. Set type as an ObjectID (so you may reference `User` as the creator of `Job`) - done
+
+12. get the front & connect with front
 
 ---
 
@@ -207,4 +212,23 @@ const authMiddleware = async (req, res, next) => {
 
 ```
 app.use('/api/v1/jobs', authenticateUser, jobsRouter)
+```
+
+6. Set type as an ObjectID
+
+- To set type as an ObjectId (so you may reference author as the author of book, for example), you may do like:
+
+```
+const Book = mongoose.model('Book', {
+  author: {
+    type: mongoose.Schema.Types.ObjectId, // here you set the author ID
+                                          // from the Author colection,
+                                          // so you can reference it
+    required: true
+  },
+  title: {
+    type: String,
+    required: true
+  }
+});
 ```
