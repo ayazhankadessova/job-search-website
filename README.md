@@ -53,7 +53,14 @@ npm install && npm start
     1. Make a schema for a jobs - done
     2. Set type as an ObjectID (so you may reference `User` as the creator of `Job`) - done
 
-12. get the front & connect with front
+12. Create Job Route
+
+    1. We need to pass Authorization Header, company, position
+    2. Get the userId -> tie it as createdBy -> so you cannot modify others work/others cannot modify your work.
+
+13.
+
+14. get the front & connect with front
 
 ---
 
@@ -231,4 +238,34 @@ const Book = mongoose.model('Book', {
     required: true
   }
 });
+```
+
+---
+
+1. `POST` /jobs
+
+- Example req.body
+
+```
+{
+    "company": "JP Morgan",
+    "position": "Software Engineer"
+}
+```
+
+- Example Output
+
+```
+{
+    "newJob": {
+        "status": "pending",
+        "_id": "64d83f72066651201e65f863",
+        "company": "JP Morgan",
+        "position": "Software Engineer",
+        "createdBy": "64d72d60e29e4b51b8f93afb",
+        "createdAt": "2023-08-13T02:26:58.783Z",
+        "updatedAt": "2023-08-13T02:26:58.783Z",
+        "__v": 0
+    }
+}
 ```
