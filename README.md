@@ -146,30 +146,42 @@ npm install && npm start
 
 - remark : we cannot protect everything, since the user can still store the token in a prone to attacks environment.
 
-1. helmet
+  1. helmet
 
-- sets different http header to prevent numerous attacks.
-- used in many other packages as a dependency
+  - sets different http header to prevent numerous attacks.
+  - used in many other packages as a dependency
 
-2. cors
+  2. cors
 
-- ensures our api is accessible from a different domain
-- make api accessible for the public
+  - ensures our api is accessible from a different domain
+  - make api accessible for the public
 
-3. xss-clean library 
+  3. xss-clean library
 
-- sanitizes user input in `req.body`, `req.query`, `req.params` -> protects from cross-site scripting attacks, where the attacker tries to inject some malicious code.
+  - sanitizes user input in `req.body`, `req.query`, `req.params` -> protects from cross-site scripting attacks, where the attacker tries to inject some malicious code.
 
-4. express-rate-limit
+  4. express-rate-limit
 
-- minimizes the amount of requests a user can make
+  - https://www.npmjs.com/package/express-rate-limit
 
+  - minimizes the amount of requests a user can make
 
+## Deploy to Heroku
 
+1. Sign Up
+2. Git
+3. Heroku CLI
 
+https://www.google.com/search?client=safari&rls=en&q=heroku+cli&ie=UTF-8&oe=UTF-8
 
+```
+brew tap heroku/brew && brew install heroku
 
+```
 
+> heroku -v
+
+4. Make MongoDB access from all ports
 
 ---
 
