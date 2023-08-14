@@ -13,12 +13,25 @@ const errorHandlerMiddleware = (err, req, res, next) => {
     return res.status(err.statusCode).json({ msg: err.message })
   }
 
-  if (err.code && err.code === 11000) {
-    customError.msg = `Duplicate value entered for ${err.keyValue} field, please choose another value.`
+  if (err.name === 'ValidationError') {
+    console.log(Object.values(err.errors))
+    customError.msg = Object.values(err.errors)
+      .map((item) => item.message)
+      .join(', and ')
     customError.statusCode = 400
   }
-  // return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ err })
-  return res.status(customError.statusCode).json({ msg: customError.msg })
+
+  if (err.code && err.code === 11000) {
+    customError.msg = `Duplicate value entered for ${Object.keys(
+      err.keyValue
+    )} field, please choose another value.`
+    customError.statusCode = 400
+  }
+
+  return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ err })
+
+  // make it more user-friendly by removing not-needed things
+  // return res.status(customError.statusCode).json({ msg: customError.msg })
 }
 
 module.exports = errorHandlerMiddleware

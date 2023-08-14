@@ -89,11 +89,57 @@ npm install && npm start
 
 16. Work on Mongoose Errors [ will reuse in later projects]
 
-- Validation Errors
-- Duplicate (Email)
-- Cast Error
+17. Validation Errors
 
-16. get the front & connect with front
+```
+[
+  ValidatorError: Please provide password
+      at validate (/Users/ayazhan/Documents/GitHub/job-search-website/node_modules/mongoose/lib/schematype.js:1270:13)
+      at /Users/ayazhan/Documents/GitHub/job-search-website/node_modules/mongoose/lib/schematype.js:1253:7
+      at Array.forEach (<anonymous>)
+      at SchemaType.doValidate (/Users/ayazhan/Documents/GitHub/job-search-website/node_modules/mongoose/lib/schematype.js:1198:14)
+      at /Users/ayazhan/Documents/GitHub/job-search-website/node_modules/mongoose/lib/document.js:2542:18
+      at process.processTicksAndRejections (node:internal/process/task_queues:77:11) {
+    properties: {
+      validator: [Function (anonymous)],
+      message: 'Please provide password',
+      type: 'required',
+      path: 'password',
+      value: undefined
+    },
+    kind: 'required',
+    path: 'password',
+    value: undefined,
+    reason: undefined,
+    [Symbol(mongoose:validatorError)]: true
+  }
+]
+```
+
+- Idea -> get error messages and separate them for more user-friendliness.
+
+2. Duplicate (Email)
+3. Cast Error [id syntax does not match exactly to what the mongoose is looking for]
+
+- We don't get it in the `Auth`, but get it in the `Jobs`.
+- Earlier, when we could not find job that matches the job id that was passed through the parameters, we threw the `NotFoundError`, but it can also be the case that the syntax does not match whatever the database is looking for.
+
+```
+{
+    "err": {
+        "stringValue": "\"64d83f72066651201e65f8634\"",
+        "valueType": "string",
+        "kind": "ObjectId",
+        "value": "64d83f72066651201e65f8634",
+        "path": "_id",
+        "reason": {},
+        "name": "CastError",
+        "message": "Cast to ObjectId failed for value \"64d83f72066651201e65f8634\" (type string) at path \"_id\" for model \"Job\""
+    }
+}
+```
+
+4. get the front & connect with front
 
 ---
 
