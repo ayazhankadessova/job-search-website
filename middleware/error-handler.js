@@ -18,24 +18,25 @@ const errorHandlerMiddleware = (err, req, res, next) => {
     customError.msg = Object.values(err.errors)
       .map((item) => item.message)
       .join(', and ')
-    customError.statusCode = 400
+    customError.statusCode = StatusCodes.BAD_REQUEST
   }
 
   if (err.name === 'CastError') {
     customError.msg = `No item found with id: ${err.value}`
-    customError.statusCode = 400
+    customError.statusCode = StatusCodes.NOT_FOUND
   }
   if (err.code && err.code === 11000) {
     customError.msg = `Duplicate value entered for ${Object.keys(
       err.keyValue
     )} field, please choose another value.`
-    customError.statusCode = 400
+    customError.statusCode = StatusCodes.BAD_REQUEST
   }
 
-  return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ err })
+  // testing the error code, name & message
+  // return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ err })
 
   // make it more user-friendly by removing not-needed things
-  // return res.status(customError.statusCode).json({ msg: customError.msg })
+  return res.status(customError.statusCode).json({ msg: customError.msg })
 }
 
 module.exports = errorHandlerMiddleware
