@@ -182,7 +182,26 @@ brew tap heroku/brew && brew install heroku
 > heroku -v
 
 4. Make MongoDB access from all ports
+5. duplicate project to desktop
+6. Delete any git repositories
+   > rm -rf .git
+7. Check if you have port ready for prod:
+   > const port = process.env.PORT || 3000
+8. Check if app works
 
+````
+app.get('/', (req, res) =>{
+  res.send('jobs api')
+})```
+
+9. Follow the steps here : [Deploying Node.js Apps on Heroku](https://devcenter.heroku.com/articles/deploying-nodejs)
+10. Specify node version
+
+```
+node -v
+v18.16.1
+
+```
 ---
 
 ## changes
@@ -191,12 +210,14 @@ brew tap heroku/brew && brew install heroku
 
 - Previous way:
 
-```
-  const { name, email, password } = req.body
-  console.log(name, email, password)
-  if (!name || !email || !password) {
-    throw new BadRequestError('Either Name, Email, or Password is missing.')
-  }
+````
+
+const { name, email, password } = req.body
+console.log(name, email, password)
+if (!name || !email || !password) {
+throw new BadRequestError('Either Name, Email, or Password is missing.')
+}
+
 ```
 
 2. Do not store password in db directly -> hash
@@ -205,28 +226,30 @@ brew tap heroku/brew && brew install heroku
 - use bcryptjs
 
 ```
+
 const register = async (req, res) => {
-  // check if any of name, email, password is missing
+// check if any of name, email, password is missing
 
-  // //   const { name, email, password } = req.body
-  // //   console.log(name, email, password)
-  // //   if (!name || !email || !password) {
-  // //     throw new BadRequestError('Either Name, Email, or Password is missing.')
-  // //   }
-  // // .. -> pass as single arguments -> good for validation
+// // const { name, email, password } = req.body
+// // console.log(name, email, password)
+// // if (!name || !email || !password) {
+// // throw new BadRequestError('Either Name, Email, or Password is missing.')
+// // }
+// // .. -> pass as single arguments -> good for validation
 
-  const { name, email, password } = req.body
+const { name, email, password } = req.body
 
-  const salt = await bcrypt.genSalt(10)
-  const hashedPassword = await bcrypt.hash(password, salt)
+const salt = await bcrypt.genSalt(10)
+const hashedPassword = await bcrypt.hash(password, salt)
 
-  const tempUser = { name, email, password: hashedPassword }
+const tempUser = { name, email, password: hashedPassword }
 
-  // spread user attributes
-  const newUser = await User.create({ ...tempUser })
-  res.status(StatusCodes.CREATED).json(newUser)
+// spread user attributes
+const newUser = await User.create({ ...tempUser })
+res.status(StatusCodes.CREATED).json(newUser)
 
 }
+
 ```
 
 - Even if someone breaks into the database, they will not get the password, but only hashed password, which prevents them from easily reusing later
@@ -234,9 +257,11 @@ const register = async (req, res) => {
 - more bytes:
 
 ```
-  // random bytes
-  const salt = await bcrypt.genSalt(10)
-```
+
+// random bytes
+const salt = await bcrypt.genSalt(10)
+
+````
 
 - more processing power.
 
@@ -266,7 +291,7 @@ const user = User.create(userObject)
 
 // With spread operator
 const user = User.create(...userObject)
-```
+````
 
 In the first case, `userObject` is passed as a single argument to the `create()` method. In the second case, the spread operator is used to spread out the properties of `userObject` as separate arguments to the `create()` method.
 
