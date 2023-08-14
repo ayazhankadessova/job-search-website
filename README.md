@@ -189,20 +189,32 @@ brew tap heroku/brew && brew install heroku
    > const port = process.env.PORT || 3000
 8. Check if app works
 
-````
+```
 app.get('/', (req, res) =>{
   res.send('jobs api')
-})```
+})
+
+```
 
 9. Follow the steps here : [Deploying Node.js Apps on Heroku](https://devcenter.heroku.com/articles/deploying-nodejs)
 10. Specify node version
 
-```
-node -v
-v18.16.1
+> node -v
+> v18.16.1
+
+11. Change start script
 
 ```
----
+  "scripts": {
+    "start": "nodemon app.js"
+  }
+```
+
+12. Make [Procfile](https://devcenter.heroku.com/articles/procfile)
+
+To determine how to start your app, Heroku first looks for a Procfile. If no Procfile exists for a Node.js app, we attempt to start a default web process via the start script in your package.json.
+
+The command in a web process type must bind to the port number specified in the PORT environment variable. If it doesn’t, the dyno doesn’t start.
 
 ## changes
 
@@ -210,7 +222,7 @@ v18.16.1
 
 - Previous way:
 
-````
+```
 
 const { name, email, password } = req.body
 console.log(name, email, password)
@@ -261,7 +273,7 @@ res.status(StatusCodes.CREATED).json(newUser)
 // random bytes
 const salt = await bcrypt.genSalt(10)
 
-````
+```
 
 - more processing power.
 
@@ -291,7 +303,7 @@ const user = User.create(userObject)
 
 // With spread operator
 const user = User.create(...userObject)
-````
+```
 
 In the first case, `userObject` is passed as a single argument to the `create()` method. In the second case, the spread operator is used to spread out the properties of `userObject` as separate arguments to the `create()` method.
 
