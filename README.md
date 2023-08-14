@@ -146,6 +146,31 @@ npm install && npm start
 
 - remark : we cannot protect everything, since the user can still store the token in a prone to attacks environment.
 
+1. helmet
+
+- sets different http header to prevent numerous attacks.
+- used in many other packages as a dependency
+
+2. cors
+
+- ensures our api is accessible from a different domain
+- make api accessible for the public
+
+3. xss-clean library 
+
+- sanitizes user input in `req.body`, `req.query`, `req.params` -> protects from cross-site scripting attacks, where the attacker tries to inject some malicious code.
+
+4. express-rate-limit
+
+- minimizes the amount of requests a user can make
+
+
+
+
+
+
+
+
 ---
 
 ## changes
