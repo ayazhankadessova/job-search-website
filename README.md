@@ -242,8 +242,16 @@ The command in a web process type must bind to the port number specified in the 
 
 - Use Postamn docs & third part library to automate the process
 - Clone existing heroku app so you can keep the app on the cloud
+
   > cd desktop
   > heroku git:clone -a job-applications-website
+
+- Export Postman collection
+
+15. APIMatic
+
+- Sign Up for https://www.apimatic.io
+- Import Postman Collection
 
 ## changes
 
