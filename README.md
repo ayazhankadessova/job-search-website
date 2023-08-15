@@ -1,3 +1,9 @@
+### Swagger UI
+
+https://job-applications-website-v1-bd784586a4a7.herokuapp.com/api-docs/
+
+https://github.com/peter-evans/swagger-github-pages
+
 #### Setup
 
 ```bash
@@ -271,6 +277,15 @@ The command in a web process type must bind to the port number specified in the 
 
 - Remove tags for Misc
 - `/jobs/{id}`, in: path, name: id, type: string.
+
+18. Add Swagger integration to `app.js`
+
+```
+const SwaggerUI = require('swagger-ui-express')
+const YAML = require('yamljs')
+const swaggerDoc = YAML.load('./job-app-swagger.yaml')
+app.use('/api-docs', SwaggerUI.serve, SwaggerUI.setup(swaggerDoc))
+```
 
 ## changes
 
