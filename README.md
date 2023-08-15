@@ -168,6 +168,8 @@ npm install && npm start
 
 ## Deploy to Heroku
 
+- Deploy via UI: https://medium.com/featurepreneur/how-to-connect-github-to-heroku-be6ff27419d3
+
 1. Sign Up
 2. Git
 3. Heroku CLI
@@ -222,7 +224,7 @@ The command in a web process type must bind to the port number specified in the 
 > git add .
 > git commit -m "initial commit"
 > heroku login
-> heroku create job-applications-website
+> heroku create job-applications-website-v1
 > git remote -v # check if git remote is pointing to the actual repo
 
 - Env Variables [ 2 ways of setting up env vars]
@@ -252,6 +254,23 @@ The command in a web process type must bind to the port number specified in the 
 
 - Sign Up for https://www.apimatic.io
 - Import Postman Collection
+
+16. Edit API
+
+- Change name
+- Change URL `https://job-applications-website-v1-bd784586a4a7.herokuapp.com/api/v1`
+- Save config
+- Change folders
+
+  1. Auth: Login, register
+  2. Jobs
+
+- Export -> OpenAPI v3 , YAML
+
+17. Test in Swagger Editor https://editor.swagger.io
+
+- Remove tags for Misc
+- `/jobs/{id}`, in: path, name: id, type: string.
 
 ## changes
 
@@ -487,3 +506,7 @@ const Book = mongoose.model('Book', {
 ## Heroku for STudents
 
 - Authenticate via Github
+
+## Next
+
+1. Deploy on netlify
