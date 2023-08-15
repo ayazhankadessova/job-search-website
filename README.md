@@ -216,6 +216,35 @@ To determine how to start your app, Heroku first looks for a Procfile. If no Pro
 
 The command in a web process type must bind to the port number specified in the PORT environment variable. If it doesn’t, the dyno doesn’t start.
 
+13. Deploying to Heroku via git
+
+> git init
+> git add .
+> git commit -m "initial commit"
+> heroku login
+> heroku create job-applications-website
+> git remote -v # check if git remote is pointing to the actual repo
+
+- Env Variables [ 2 ways of setting up env vars]
+
+> heroku config:set JWT*LIFETIME=\_VALUE HERE*
+
+- via GUI:
+
+> Dashboard -> app -> Settings -> Reveal Env Vars -> add Mongo_URI and JWT_SECRET
+> git push heroku master
+
+- restart all dynos
+- Add prod_url as a global to postman -> `https://job-applications-website-1623c2b4d4e9.herokuapp.com/api/v1`
+- try `login` & `jobs` routes
+
+14. Create Swagger Docs
+
+- Use Postamn docs & third part library to automate the process
+- Clone existing heroku app so you can keep the app on the cloud
+  > cd desktop
+  > heroku git:clone -a job-applications-website
+
 ## changes
 
 1. Use mongoose validator instead of manual validation, to get more meaningful messages
@@ -446,3 +475,7 @@ const Book = mongoose.model('Book', {
    - Authorization -> Bearer -> {{accessToken}}
 
    3. Use it in Get all jobs as well
+
+## Heroku for STudents
+
+- Authenticate via Github
