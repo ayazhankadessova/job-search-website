@@ -2,7 +2,7 @@
 
 https://job-applications-website-v1-bd784586a4a7.herokuapp.com/api-docs/
 
-https://github.com/peter-evans/swagger-github-pages
+Can also be hosted using this template: https://github.com/peter-evans/swagger-github-pages -> https://ayazhankadessova.github.io/job-search-swagger/#/
 
 #### Setup
 
