@@ -55,9 +55,7 @@ const login = async (req, res) => {
   // create a token
   const token = loginUser.createToken()
 
-  res
-    .status(StatusCodes.CREATED)
-    .json({ user: { name: loginUser.name }, token })
+  res.status(StatusCodes.OK).json({ user: { name: loginUser.name }, token })
 
   // TODO: verify token
 }
