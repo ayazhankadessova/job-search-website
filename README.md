@@ -1,5 +1,3 @@
-- [ ] Check prod_url
-
 ### Swagger UI
 
 https://job-applications-website-v1-bd784586a4a7.herokuapp.com/api-docs/
@@ -12,11 +10,15 @@ Can also be hosted using this template: https://github.com/peter-evans/swagger-g
 npm install && npm start
 ```
 
-## REST API -
+## REST API
 
-1. Register User
+- Use `Prod_URL` -> `https://job-applications-website-v1-bd784586a4a7.herokuapp.com` or `https://localhost:3000`
 
-> POST http://localhost:3000/api/v1/auth/register
+1. Register a User
+
+`POST /api/v1/auth/register`
+
+## Body 
 
 ```
 {
@@ -26,7 +28,7 @@ npm install && npm start
 }
 ```
 
-- Sample Response
+### Response
 
 ```
 {
@@ -37,11 +39,22 @@ npm install && npm start
 }
 ```
 
-2. Login User
+```
+    HTTP/1.1 201 CREATED
+    Date: Thu, 7 Sep 2023 12:36:30 GMT
+    Status: 201 OK
+    Connection: close
+    Content-Type: application/json
+    Content-Length: 2
 
-> POST http://localhost:3000/api/v1/auth/login
+    []
+```
 
-- body
+2. Login a User
+
+`POST /api/v1/auth/login`
+
+### Body 
 
 ```
 {
@@ -50,7 +63,7 @@ npm install && npm start
 }
 ```
 
-- Sample Response
+### Response 
 
 ```
 {
@@ -61,20 +74,34 @@ npm install && npm start
 }
 ```
 
-- Tests
+```
+    HTTP/1.1 200 OK
+    Date: Thu, 7 Sep 2023 12:36:30 GMT
+    Status: 200 OK
+    Connection: close
+    Content-Type: application/json
+    Content-Length: 2
+
+    []
+```
+
+### Tests
 
 ```
 const jsonData = pm.response.json()
 pm.globals.set("accessToken", jsonData.token);
 ```
 
-3. Create a Job
+4. Create a Job
 
-> POST https://job-applications-website-v1-bd784586a4a7.herokuapp.com/api/v1/jobs
+`POST /api/v1/jobs` 
 
-- Auth Type:Bearer Token
+### Auth 
+
+- Type:Bearer Token
 - Token: {{accessToken}}
-- body
+
+### Body
 
 ```
 {
@@ -83,7 +110,7 @@ pm.globals.set("accessToken", jsonData.token);
 }
 ```
 
-- Response
+### Response
 
 ```
 {
@@ -100,13 +127,27 @@ pm.globals.set("accessToken", jsonData.token);
 }
 ```
 
+```
+    HTTP/1.1 201 CREATED
+    Date: Thu, 7 Sep 2023 12:36:30 GMT
+    Status: 201 CREATED
+    Connection: close
+    Content-Type: application/json
+    Content-Length: 2
+
+    []
+```
+
 4. Get All Jobs
 
-> GET https://job-applications-website-v1-bd784586a4a7.herokuapp.com/api/v1/jobs
+`GET /api/v1/jobs`
 
-- Auth Type:Bearer Token
+### Auth 
+
+- Type:Bearer Token
 - Token: {{accessToken}}
-- body
+
+### Response
 
 ```
 {
@@ -136,13 +177,27 @@ pm.globals.set("accessToken", jsonData.token);
 }
 ```
 
+```
+    HTTP/1.1 200 OK
+    Date: Thu, 7 Sep 2023 12:36:30 GMT
+    Status: 200 OK
+    Connection: close
+    Content-Type: application/json
+    Content-Length: 2
+
+    []
+```
+
 5. Get Single Job
 
-> GET https://job-applications-website-v1-bd784586a4a7.herokuapp.com/api/v1/jobs/64f85eeb1c543300027d4db5
+`GET /api/v1/jobs/64f85eeb1c543300027d4db5`
 
-- Auth Type:Bearer Token
+### Auth
+
+- Type: Bearer Token
 - Token: {{accessToken}}
-- body
+
+### Body
 
 ```
 {
@@ -159,19 +214,33 @@ pm.globals.set("accessToken", jsonData.token);
 }
 ```
 
+```
+    HTTP/1.1 200 OK
+    Date: Thu, 7 Sep 2023 12:36:30 GMT
+    Status: 200 OK
+    Connection: close
+    Content-Type: application/json
+    Content-Length: 2
+
+    []
+```
+
 6. Update a Job
 
-> PATCH https://job-applications-website-v1-bd784586a4a7.herokuapp.com/api/v1/jobs/64f85eeb1c543300027d4db5
+`PATCH /api/v1/jobs/64f85eeb1c543300027d4db5`
 
-- Auth Type:Bearer Token
+### Auth 
+
+- Type:Bearer Token
 - Token: {{accessToken}}
-- body
+
+### Body
 
 ```
 { "company" : "Pfizer Kz", "position": "Site Reliability Engineer"}
 ```
 
-- Response
+### Response
 
 ```
 {
@@ -188,12 +257,28 @@ pm.globals.set("accessToken", jsonData.token);
 }
 ```
 
+```
+    HTTP/1.1 200 OK
+    Date: Thu, 7 Sep 2023 12:36:30 GMT
+    Status: 200 OK
+    Connection: close
+    Content-Type: application/json
+    Content-Length: 2
+
+    []
+```
+
 7. Delete a Single Job
 
-> Delete https://job-applications-website-v1-bd784586a4a7.herokuapp.com/api/v1/jobs/64f85eeb1c543300027d4db5
+`DELETE /api/v1/jobs/64f85eeb1c543300027d4db5`
 
-- Auth Type:Bearer Token
+### Auth 
+
+- Type:Bearer Token
 - Token: {{accessToken}}
+
+
+## Ste-By-Step Workflow
 
 ## Task
 
@@ -654,37 +739,9 @@ const Book = mongoose.model('Book', {
 });
 ```
 
----
+## Global Variables
 
-1. `POST` /jobs
-
-- Example req.body
-
-```
-{
-    "company": "JP Morgan",
-    "position": "Software Engineer"
-}
-```
-
-- Example Output
-
-```
-{
-    "newJob": {
-        "status": "pending",
-        "_id": "64d83f72066651201e65f863",
-        "company": "JP Morgan",
-        "position": "Software Engineer",
-        "createdBy": "64d72d60e29e4b51b8f93afb",
-        "createdAt": "2023-08-13T02:26:58.783Z",
-        "updatedAt": "2023-08-13T02:26:58.783Z",
-        "__v": 0
-    }
-}
-```
-
-2. Set global valriables in PostMan
+1. Set global variables in PostMan
 
    1. Set global variable in PostMan:
 
@@ -703,10 +760,10 @@ const Book = mongoose.model('Book', {
 
    3. Use it in Get all jobs as well
 
-## Heroku for STudents
+## Heroku for Students
 
 - Authenticate via Github
 
 ## Next
 
-1. Deploy on netlify
+1. Deploy on netlify with Frontend
