@@ -14,7 +14,7 @@ npm install && npm start
 
 - Use `Prod_URL` -> `https://job-applications-website-v1-bd784586a4a7.herokuapp.com` or `https://localhost:3000`
 
-1. Register a User
+## 1. Register a User
 
 `POST /api/v1/auth/register`
 
@@ -50,7 +50,7 @@ npm install && npm start
     []
 ```
 
-2. Login a User
+## 2. Login a User
 
 `POST /api/v1/auth/login`
 
@@ -92,7 +92,7 @@ const jsonData = pm.response.json()
 pm.globals.set("accessToken", jsonData.token);
 ```
 
-4. Create a Job
+## 3. Create a Job
 
 `POST /api/v1/jobs`
 
@@ -138,7 +138,7 @@ pm.globals.set("accessToken", jsonData.token);
     []
 ```
 
-4. Get All Jobs
+## 4. Get All Jobs
 
 `GET /api/v1/jobs`
 
@@ -188,7 +188,7 @@ pm.globals.set("accessToken", jsonData.token);
     []
 ```
 
-5. Get Single Job
+## 5. Get Single Job
 
 `GET /api/v1/jobs/64f85eeb1c543300027d4db5`
 
@@ -225,7 +225,7 @@ pm.globals.set("accessToken", jsonData.token);
     []
 ```
 
-6. Update a Job
+## 6. Update a Job
 
 `PATCH /api/v1/jobs/64f85eeb1c543300027d4db5`
 
@@ -268,7 +268,7 @@ pm.globals.set("accessToken", jsonData.token);
     []
 ```
 
-7. Delete a Single Job
+## 7. Delete a Single Job
 
 `DELETE /api/v1/jobs/64f85eeb1c543300027d4db5`
 
@@ -277,9 +277,7 @@ pm.globals.set("accessToken", jsonData.token);
 - Type:Bearer Token
 - Token: {{accessToken}}
 
-## Ste-By-Step Workflow
-
-## Task
+## Step-By-Step Workflow
 
 1. bootstrap - done
 2. Add dummy controllers - done
