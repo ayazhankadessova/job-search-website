@@ -1,4 +1,4 @@
-### Swagger UI
+## Swagger UI
 
 https://job-applications-website-v1-bd784586a4a7.herokuapp.com/api-docs/
 
@@ -18,7 +18,7 @@ npm install && npm start
 
 `POST /api/v1/auth/register`
 
-## Body 
+## Body
 
 ```
 {
@@ -54,7 +54,7 @@ npm install && npm start
 
 `POST /api/v1/auth/login`
 
-### Body 
+### Body
 
 ```
 {
@@ -63,7 +63,7 @@ npm install && npm start
 }
 ```
 
-### Response 
+### Response
 
 ```
 {
@@ -94,9 +94,9 @@ pm.globals.set("accessToken", jsonData.token);
 
 4. Create a Job
 
-`POST /api/v1/jobs` 
+`POST /api/v1/jobs`
 
-### Auth 
+### Auth
 
 - Type:Bearer Token
 - Token: {{accessToken}}
@@ -142,7 +142,7 @@ pm.globals.set("accessToken", jsonData.token);
 
 `GET /api/v1/jobs`
 
-### Auth 
+### Auth
 
 - Type:Bearer Token
 - Token: {{accessToken}}
@@ -229,7 +229,7 @@ pm.globals.set("accessToken", jsonData.token);
 
 `PATCH /api/v1/jobs/64f85eeb1c543300027d4db5`
 
-### Auth 
+### Auth
 
 - Type:Bearer Token
 - Token: {{accessToken}}
@@ -272,11 +272,10 @@ pm.globals.set("accessToken", jsonData.token);
 
 `DELETE /api/v1/jobs/64f85eeb1c543300027d4db5`
 
-### Auth 
+### Auth
 
 - Type:Bearer Token
 - Token: {{accessToken}}
-
 
 ## Ste-By-Step Workflow
 
