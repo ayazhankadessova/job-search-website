@@ -10,6 +10,30 @@ Can also be hosted using this template: https://github.com/peter-evans/swagger-g
 npm install && npm start
 ```
 
+## REST API
+
+1. Register User
+
+> POST http://localhost:3000/api/v1/auth/register
+
+```
+{
+    "name": "Yerkezhan",
+    "email": "kadessovayerkezhan1@gmail.com"
+}
+```
+
+- Tests
+
+```
+const jsonData = pm.response.json()
+pm.globals.set("accessToken", jsonData.token);
+```
+
+2. Login User
+
+> POST http://localhost:3000/api/v1/auth/login
+
 ## Task
 
 1. bootstrap - done
