@@ -1,7 +1,13 @@
 <h2 align="center">Job Search API
 </h2>
 
-`NodeJS`, `MongoDB`, `JWT`, `Swagger`
+`NodeJS`, `Expressjs`, `MongoDB`, `JWT`, `Swagger`
+
+## Overview
+
+Nodejs & Express Project focusing on backend development (API) for the Job Applications app.
+
+See `Swagger UI` & `REST API` for supported operations.
 
 ## Swagger UI
 
