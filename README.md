@@ -1,3 +1,8 @@
+<h2 align="center">Job Search API
+</h2>
+
+`NodeJS`, `MongoDB`, `JWT`, `Swagger`
+
 ## Swagger UI
 
 https://job-applications-website-v1-bd784586a4a7.herokuapp.com/api-docs/
