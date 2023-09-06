@@ -1,3 +1,5 @@
+- [ ] Check prod_url
+
 ### Swagger UI
 
 https://job-applications-website-v1-bd784586a4a7.herokuapp.com/api-docs/
@@ -10,7 +12,7 @@ Can also be hosted using this template: https://github.com/peter-evans/swagger-g
 npm install && npm start
 ```
 
-## REST API
+## REST API -
 
 1. Register User
 
@@ -18,8 +20,44 @@ npm install && npm start
 
 ```
 {
-    "name": "Yerkezhan",
-    "email": "kadessovayerkezhan1@gmail.com"
+    "name": "YerkezhanK",
+    "email": "kadessovayerkezhan2@gmail.com",
+    "password": "yerkekadessova"
+}
+```
+
+- Sample Response
+
+```
+{
+    "user": {
+        "name": "YerkezhanK"
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGY4NWUzYzFjNTQzMzAwMDI3ZDRkYjEiLCJuYW1lIjoiWWVya2V6aGFuSyIsImlhdCI6MTY5Mzk5ODY1MiwiZXhwIjoxNjk2NTkwNjUyfQ.xyw-xwilrroVnhS3qorqqpJJD0prNzhfn5W71l7sPTc"
+}
+```
+
+2. Login User
+
+> POST http://localhost:3000/api/v1/auth/login
+
+- body
+
+```
+{
+    "email": "kadessovayerkezhan2@gmail.com",
+    "password": "yerkekadessova"
+}
+```
+
+- Sample Response
+
+```
+{
+    "user": {
+        "name": "YerkezhanK"
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGY4NWUzYzFjNTQzMzAwMDI3ZDRkYjEiLCJuYW1lIjoiWWVya2V6aGFuSyIsImlhdCI6MTY5Mzk5ODc0NSwiZXhwIjoxNjk2NTkwNzQ1fQ.plh8KvMKlAfvnTt1bTmuESmo7gvXmWGM_10sR2Vjyo0"
 }
 ```
 
@@ -30,9 +68,132 @@ const jsonData = pm.response.json()
 pm.globals.set("accessToken", jsonData.token);
 ```
 
-2. Login User
+3. Create a Job
 
-> POST http://localhost:3000/api/v1/auth/login
+> POST https://job-applications-website-v1-bd784586a4a7.herokuapp.com/api/v1/jobs
+
+- Auth Type:Bearer Token
+- Token: {{accessToken}}
+- body
+
+```
+{
+    "company": "Pfizer",
+    "position": "Business Solutions Analyst"
+}
+```
+
+- Response
+
+```
+{
+    "newJob": {
+        "status": "pending",
+        "_id": "64f85f281c543300027d4db7",
+        "company": "Pfizer",
+        "position": "Business Solutions Analyst 2",
+        "createdBy": "64f85e3c1c543300027d4db1",
+        "createdAt": "2023-09-06T11:14:48.150Z",
+        "updatedAt": "2023-09-06T11:14:48.150Z",
+        "__v": 0
+    }
+}
+```
+
+4. Get All Jobs
+
+> GET https://job-applications-website-v1-bd784586a4a7.herokuapp.com/api/v1/jobs
+
+- Auth Type:Bearer Token
+- Token: {{accessToken}}
+- body
+
+```
+{
+    "jobs": [
+        {
+            "status": "pending",
+            "_id": "64f85eeb1c543300027d4db5",
+            "company": "Pfizer",
+            "position": "Business Solutions Analyst",
+            "createdBy": "64f85e3c1c543300027d4db1",
+            "createdAt": "2023-09-06T11:13:47.665Z",
+            "updatedAt": "2023-09-06T11:13:47.665Z",
+            "__v": 0
+        },
+        {
+            "status": "pending",
+            "_id": "64f85f281c543300027d4db7",
+            "company": "Pfizer",
+            "position": "Business Solutions Analyst 2",
+            "createdBy": "64f85e3c1c543300027d4db1",
+            "createdAt": "2023-09-06T11:14:48.150Z",
+            "updatedAt": "2023-09-06T11:14:48.150Z",
+            "__v": 0
+        }
+    ],
+    "count": 2
+}
+```
+
+5. Get Single Job
+
+> GET https://job-applications-website-v1-bd784586a4a7.herokuapp.com/api/v1/jobs/64f85eeb1c543300027d4db5
+
+- Auth Type:Bearer Token
+- Token: {{accessToken}}
+- body
+
+```
+{
+    "job": {
+        "status": "pending",
+        "_id": "64f85eeb1c543300027d4db5",
+        "company": "Pfizer",
+        "position": "Business Solutions Analyst",
+        "createdBy": "64f85e3c1c543300027d4db1",
+        "createdAt": "2023-09-06T11:13:47.665Z",
+        "updatedAt": "2023-09-06T11:13:47.665Z",
+        "__v": 0
+    }
+}
+```
+
+6. Update a Job
+
+> PATCH https://job-applications-website-v1-bd784586a4a7.herokuapp.com/api/v1/jobs/64f85eeb1c543300027d4db5
+
+- Auth Type:Bearer Token
+- Token: {{accessToken}}
+- body
+
+```
+{ "company" : "Pfizer Kz", "position": "Site Reliability Engineer"}
+```
+
+- Response
+
+```
+{
+    "job": {
+        "status": "pending",
+        "_id": "64f85eeb1c543300027d4db5",
+        "company": "Pfizer Kz",
+        "position": "Site Reliability Engineer",
+        "createdBy": "64f85e3c1c543300027d4db1",
+        "createdAt": "2023-09-06T11:13:47.665Z",
+        "updatedAt": "2023-09-06T11:18:18.830Z",
+        "__v": 0
+    }
+}
+```
+
+7. Delete a Single Job
+
+> Delete https://job-applications-website-v1-bd784586a4a7.herokuapp.com/api/v1/jobs/64f85eeb1c543300027d4db5
+
+- Auth Type:Bearer Token
+- Token: {{accessToken}}
 
 ## Task
 
